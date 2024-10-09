@@ -92,10 +92,12 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        //case sensitivity check
         value = value.toLowerCase();
 
+        //iterates over arrayList with hashMap of jobs to create and print a corresponding arrayList of jobs to users input
         if (column.equals("all")) {
             for (int i = 0; i < allJobs.size(); i++) {
                 String job = "";
@@ -103,6 +105,8 @@ public class JobData {
                     Object hash_value = entry.getValue();
                     job = job + " " + hash_value;
                 }
+
+                //case sensitivity check
                 job = job.toLowerCase();
                 if (job.contains(value)) {
                     jobs.add(allJobs.get(i));
@@ -113,6 +117,8 @@ public class JobData {
         } else {
             for (HashMap<String, String> row : allJobs) {
                 String aValue = row.get(column);
+
+                //case sensitivity check
                 aValue = aValue.toLowerCase();
 
                 if (aValue.contains(value)) {
