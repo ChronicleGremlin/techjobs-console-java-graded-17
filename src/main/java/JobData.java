@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -89,13 +86,38 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
 
         // load data, if not already loaded
         loadData();
 
         // TODO - implement this method
-        return null;
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        if (column.equals("all")) {
+            for (int i = 0; i < allJobs.size(); i++) {
+                String job = "";
+                for (Map.Entry<String, String> entry : allJobs.get(i).entrySet()) {
+                    Object hash_value = entry.getValue();
+                    job = job + " " + hash_value;
+                }
+                if (job.contains(value)) {
+                    jobs.add(allJobs.get(i));
+                }
+            }
+            return jobs;
+
+        } else {
+            for (HashMap<String, String> row : allJobs) {
+                String aValue = row.get(column);
+
+                if (aValue.contains(value)) {
+                    jobs.add(row);
+                }
+            }
+        }
+        return jobs;
     }
 
     /**
