@@ -76,7 +76,7 @@ public class JobData {
             String foundValue = job.get(key);
 
             // If found value contains user search value
-            if (foundValue.contains(value)) {
+            if (foundValue.toLowerCase().contains(value)) {
                 newJobs.add(job);
             }
         }
