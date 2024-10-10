@@ -126,7 +126,7 @@ public class TechJobs {
         } else {
             //index through arrayList
             for (int i = 0; i < someJobs.size(); i++){
-                System.out.println("*****");
+                System.out.println("\n*****");
                 HashMap<String, String> job = someJobs.get(i);
                 for (Map.Entry<String, String> entry : job.entrySet()) {
                     String key = entry.getKey();
@@ -134,7 +134,7 @@ public class TechJobs {
 
                     System.out.println(key + ": " + value);
                 }
-                System.out.println("*****\n");
+                System.out.println("*****");
             }
         }
     }
