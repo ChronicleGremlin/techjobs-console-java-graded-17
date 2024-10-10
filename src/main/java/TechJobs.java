@@ -61,10 +61,10 @@ public class TechJobs {
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
 
-                if (searchField.equals("all") && searchTerm.equals("")) {
-                    printJobs(JobData.findAll());
+                if (searchField.equals("all")) {
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
-                    printJobs(JobData.findByValue(searchField, searchTerm));
+                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
         }
@@ -124,11 +124,13 @@ public class TechJobs {
         if (someJobs.size() == 0) {
             System.out.println("No Results");
         } else {
+            //index through arrayList
             for (int i = 0; i < someJobs.size(); i++){
                 System.out.println("*****");
-                for (Map.Entry<String, String> job : someJobs.get(i).entrySet()) {
-                    String key = job.getKey();
-                    Object value = job.getValue();
+                HashMap<String, String> job = someJobs.get(i);
+                for (Map.Entry<String, String> entry : job.entrySet()) {
+                    String key = entry.getKey();
+                    Object value = entry.getValue();
 
                     System.out.println(key + ": " + value);
                 }

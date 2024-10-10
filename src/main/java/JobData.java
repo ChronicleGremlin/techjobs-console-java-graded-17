@@ -57,27 +57,31 @@ public class JobData {
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
      *
-     * @param column   Column that should be searched.
+     * @param key   Column that should be searched.
      * @param value Value of teh field to search for
      * @return List of all jobs matching the criteria
      */
-    public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
+    public static ArrayList<HashMap<String, String>> findByColumnAndValue(String key, String value) {
 
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        // Create new empty job list
+        ArrayList<HashMap<String, String>> newJobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        // Iterate through all jobs
+        for (HashMap<String, String> job : allJobs) {
 
-            String aValue = row.get(column);
+            // Find value for specified key
+            String foundValue = job.get(key);
 
-            if (aValue.contains(value)) {
-                jobs.add(row);
+            // If found value contains user search value
+            if (foundValue.contains(value)) {
+                newJobs.add(job);
             }
         }
 
-        return jobs;
+        return newJobs;
     }
 
     /**
@@ -86,7 +90,7 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         // load data, if not already loaded
         loadData();
@@ -97,35 +101,15 @@ public class JobData {
         //case sensitivity check
         value = value.toLowerCase();
 
-        //iterates over arrayList with hashMap of jobs to create and print a corresponding arrayList of jobs to users input
-        if (column.equals("all")) {
-            for (int i = 0; i < allJobs.size(); i++) {
-                String job = "";
-                for (Map.Entry<String, String> entry : allJobs.get(i).entrySet()) {
-                    Object hash_value = entry.getValue();
-                    job = job + " " + hash_value;
-                }
-
-                //case sensitivity check
-                job = job.toLowerCase();
-                if (job.contains(value)) {
-                    jobs.add(allJobs.get(i));
-                }
-            }
-            return jobs;
-
-        } else {
-            for (HashMap<String, String> row : allJobs) {
-                String aValue = row.get(column);
-
-                //case sensitivity check
-                aValue = aValue.toLowerCase();
-
-                if (aValue.contains(value)) {
-                    jobs.add(row);
+        for (HashMap<String, String> job : allJobs) {
+            for (Map.Entry<String, String> entry : job.entrySet()) {
+                if (entry.getValue().toLowerCase().contains(value)) {
+                    jobs.add(job);
+                    break;
                 }
             }
         }
+
         return jobs;
     }
 
