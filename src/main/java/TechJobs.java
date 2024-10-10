@@ -44,7 +44,7 @@ public class TechJobs {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
-                    System.out.println("***** All " + columnChoices.get(columnChoice) + " Values *****\n");
+                    System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
                     // Print list of skills, employers, etc
                     for (String item : results) {
@@ -87,7 +87,7 @@ public class TechJobs {
 
         do {
 
-            System.out.println(menuHeader);
+            System.out.println("\n" + menuHeader);
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
