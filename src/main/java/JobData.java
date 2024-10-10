@@ -69,11 +69,14 @@ public class JobData {
         // Create new empty job list
         ArrayList<HashMap<String, String>> newJobs = new ArrayList<>();
 
+        // Case sensitivity check
+        value = value.toLowerCase();
+
         // Iterate through all jobs
         for (HashMap<String, String> job : allJobs) {
 
             // Find value for specified key
-            String foundValue = job.get(key);
+            String foundValue = job.get(key).toLowerCase();
 
             // If found value contains user search value
             if (foundValue.toLowerCase().contains(value)) {
