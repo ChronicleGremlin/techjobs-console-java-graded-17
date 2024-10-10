@@ -52,7 +52,7 @@ public class TechJobs {
                     }
                 }
 
-            } else { // choice is "search"
+            } else { // Choice is "search"
 
                 // How does the user want to search (e.g. by skill or employer)
                 String searchField = getUserSelection("Search by:", columnChoices);
@@ -120,14 +120,16 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        //iterates over arrayList of a hashMap with jobs  to print matching results
+        // Iterates over arrayList of a hashMap with jobs to print matching results
         if (someJobs.size() == 0) {
             System.out.println("No Results");
         } else {
-            //index through arrayList
+            // Index through arrayList
             for (int i = 0; i < someJobs.size(); i++){
                 System.out.println("\n*****");
+                // Initializing hashmap job to loop through someJobs and hold each job key and value pair
                 HashMap<String, String> job = someJobs.get(i);
+                // Loops through job hashmap and prints out each job key/value
                 for (Map.Entry<String, String> entry : job.entrySet()) {
                     String key = entry.getKey();
                     Object value = entry.getValue();

@@ -98,9 +98,10 @@ public class JobData {
         // TODO - implement this method
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        //case sensitivity check
+        // Case sensitivity check
         value = value.toLowerCase();
 
+        // Loops through allJobs and prints matching values for searched term with case sensitivity without duplicates
         for (HashMap<String, String> job : allJobs) {
             for (Map.Entry<String, String> entry : job.entrySet()) {
                 if (entry.getValue().toLowerCase().contains(value)) {
