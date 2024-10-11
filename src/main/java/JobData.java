@@ -105,7 +105,9 @@ public class JobData {
         value = value.toLowerCase();
 
         // Loops through allJobs and prints matching values for searched term with case sensitivity without duplicates
+        //first loops through array of hashmap of all jobs
         for (HashMap<String, String> job : allJobs) {
+            //second loops though hashmap of individual jobs
             for (Map.Entry<String, String> entry : job.entrySet()) {
                 if (entry.getValue().toLowerCase().contains(value)) {
                     jobs.add(job);
